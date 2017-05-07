@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { MealPage } from '../pages/meal/meal';
 import { AddMealPage } from '../pages/add-meal/add-meal';
 import { AchePage } from '../pages/ache/ache';
+import { AddAchePage } from '../pages/add-ache/add-ache';
 import { StatisticsPage } from '../pages/statistics/statistics';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -17,6 +18,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     AddMealPage,
     MealPage,
+    AddAchePage,
     AchePage,
     StatisticsPage,
     TabsPage
@@ -30,6 +32,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     AddMealPage,
     MealPage,
+    AddAchePage,
     AchePage,
     StatisticsPage,
     TabsPage
