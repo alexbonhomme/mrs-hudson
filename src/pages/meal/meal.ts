@@ -5,12 +5,14 @@ import { AppSettings } from '../../app/app.settings';
 import { AddMealPage } from '../add-meal/add-meal';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import 'rxjs/add/operator/first';
 
 @Component({
   selector: 'page-meal',
   templateUrl: 'meal.html'
 })
 export class MealPage {
+  public isLoading = true;
   public meals: FirebaseListObservable<any[]>;
 
   constructor(
@@ -18,6 +20,9 @@ export class MealPage {
     private db: AngularFireDatabase
   ) {
     this.meals = db.list(AppSettings.db.mealsList);
+
+    // first loading
+    this.meals.first().subscribe(() => this.isLoading = false);
   }
 
   addMeal() {
