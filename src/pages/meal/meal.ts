@@ -21,6 +21,19 @@ export class MealPage {
   }
 
   addMeal() {
-      this.navCtrl.push(AddMealPage);
+    this.navCtrl.push(AddMealPage);
+  }
+
+  deleteMeal(key) {
+    // TODO : add confirm box
+    this.meals.remove(key);
+  }
+
+  formatFoodList(foodList: string[]): string {
+    foodList = foodList || [];
+
+    return foodList
+      .map(item => item[3])
+      .join(' - ');
   }
 }
