@@ -28,12 +28,9 @@ export class AddMealPage {
     this.foodService.getAll().subscribe(data => this.foodItemsOrigin = data);
   }
 
-  getItems(event: any) {
-    // set val to the value of the searchbar
-    let value = event.target.value;
-
+  getItems(value: string) {
     // if the value is an empty string don't filter the items
-    if (value && value.trim() != '') {
+    if (value && value.trim() !== '') {
       this.foodItems = this.foodItemsOrigin
         .filter(item => item[3].toLowerCase().indexOf(value.toLowerCase()) > -1)
         .slice(0, AUTOCOMPLETE_MAX_ITEMS);

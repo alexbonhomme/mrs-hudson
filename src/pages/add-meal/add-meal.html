@@ -8,23 +8,22 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-label floating>Date</ion-label>
+    <ion-label>Date</ion-label>
     <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="meal.date" name="date"></ion-datetime>
   </ion-item>
 
   <ion-item>
-    <ion-label floating>Heure</ion-label>
+    <ion-label>Heure</ion-label>
     <ion-datetime displayFormat="HH:mm" [(ngModel)]="meal.time" name="time"></ion-datetime>
   </ion-item>
 
   <ion-item>
-    <ion-label floating>Commentaire</ion-label>
+    <ion-label stacked>Commentaire</ion-label>
     <ion-textarea [(ngModel)]="meal.comment" name="comment"></ion-textarea>
   </ion-item>
 
   <ion-item>
-    <ion-label floating>Ajouter un aliments</ion-label>
-    <ion-input [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-input>
+    <ion-input placeholder="Rechercher un aliment" clearInput [(ngModel)]="searchQuery" (ngModelChange)="getItems($event)"></ion-input>
   </ion-item>
 
   <ion-list *ngIf="showAutocomplete">
