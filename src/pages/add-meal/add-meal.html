@@ -9,12 +9,7 @@
 <ion-content padding>
   <ion-item>
     <ion-label>Date</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="meal.date" name="date"></ion-datetime>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Heure</ion-label>
-    <ion-datetime displayFormat="HH:mm" [(ngModel)]="meal.time" name="time"></ion-datetime>
+    <ion-datetime displayFormat="HH:mm - DD/MM/YYYY" pickerFormat="DD MMM YYYY HH mm" [(ngModel)]="meal.datetime" name="datetime" required></ion-datetime>
   </ion-item>
 
   <ion-item>
@@ -44,7 +39,7 @@
     </ion-chip>
   </div>
 
-  <button (click)="slides.slideNext()" ion-button block color="meal-accent">
+  <button (click)="save()" ion-button block color="meal-accent">
     Enregistrer
   </button>
 </ion-content>

@@ -3,6 +3,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { AppSettings } from './app.settings';
 
 import { MealPage } from '../pages/meal/meal';
 import { AddMealPage } from '../pages/add-meal/add-meal';
@@ -15,6 +16,10 @@ import { FoodService } from '../services/food.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      monthShortNames: ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juill', 'août', 'sept', 'oct', 'nov', 'déc'],
+    }),
+    AngularFireModule.initializeApp(AppSettings.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

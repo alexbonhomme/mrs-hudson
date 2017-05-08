@@ -2,4 +2,8 @@ page-add-meal {
     ion-item.item {
         padding-left: 0;
     }
+
+    ion-chip.chip ion-label {
+        margin-right: 0;
+    }
 }
