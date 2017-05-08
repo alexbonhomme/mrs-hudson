@@ -7,5 +7,43 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="meal.date" name="date"></ion-datetime>
+    </ion-item>
 
+    <ion-item>
+      <ion-label floating>Heure</ion-label>
+      <ion-datetime displayFormat="HH:mm" [(ngModel)]="meal.time" name="time"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Commentaire</ion-label>
+      <ion-textarea [(ngModel)]="meal.comment" name="comment"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-searchbar (ionInput)="getItems($event)">
+  </ion-searchbar>
+
+  <ion-list *ngIf="sshowAutocomplete">
+    <ion-item *ngFor="let food of foodItems">
+      {{ food[3] }}
+      <button ion-button clear item-right (click)="addItem(food)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+
+  <ion-chip *ngFor="let food of meal.food">
+    <ion-label>{{ food[3] }}</ion-label>
+    <button ion-button (click)="removeItemAt($index)">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-chip>
+
+  <button (click)="slides.slideNext()" ion-button block color="meal-accent">
+    Enregistrer
+  </button>
 </ion-content>

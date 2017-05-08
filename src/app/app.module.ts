@@ -1,4 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -9,6 +10,8 @@ import { AchePage } from '../pages/ache/ache';
 import { AddAchePage } from '../pages/add-ache/add-ache';
 import { StatisticsPage } from '../pages/statistics/statistics';
 import { TabsPage } from '../pages/tabs/tabs';
+
+import { FoodService } from '../services/food.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,6 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -43,7 +47,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     {
       provide: ErrorHandler,
       useClass: IonicErrorHandler
-    }
+    },
+    FoodService
   ]
 })
 export class AppModule {}
