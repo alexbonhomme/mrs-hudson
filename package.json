@@ -1,8 +1,8 @@
 {
-  "name": "ionic-hello-world",
-  "version": "0.0.0",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "mrs-hudson",
+  "version": "0.0.1",
+  "author": "Alexandre Bonhomme <alex@alexetmanon.com>",
+  "homepage": "http://alexetmanon.com/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
