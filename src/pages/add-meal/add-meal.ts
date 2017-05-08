@@ -1,17 +1,18 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { Slides } from 'ionic-angular';
-
+import { Component } from '@angular/core';
 
 import { FoodService } from '../../services/food.service';
+
+const AUTOCOMPLETE_MAX_ITEMS = 10;
 
 @Component({
   selector: 'page-add-meal',
   templateUrl: 'add-meal.html'
 })
-export class AddMealPage implements OnInit {
-  @ViewChild(Slides) slides: Slides;
-
+export class AddMealPage {
   public showAutocomplete: boolean = false;
+  public searchQuery: string;
+
+  public foodItemsOrigin: any[];
   public foodItems: any[];
 
   public meal = {
@@ -24,30 +25,18 @@ export class AddMealPage implements OnInit {
   constructor(
     private foodService: FoodService
   ) {
-    this.initializeFoodItems();
-  }
-
-  ngOnInit() {
-    // avoid swipe to next slide to performe validation
-    // this.slides.lockSwipeToNext(true);
-  }
-
-  private initializeFoodItems() {
-    this.foodService.getAll().subscribe(data => this.foodItems = data);
+    this.foodService.getAll().subscribe(data => this.foodItemsOrigin = data);
   }
 
   getItems(event: any) {
-    // Reset items back to all of the items
-    this.initializeFoodItems();
-
     // set val to the value of the searchbar
     let value = event.target.value;
 
     // if the value is an empty string don't filter the items
     if (value && value.trim() != '') {
-      this.foodItems = this.foodItems.filter(item => {
-        return (item[3].toLowerCase().indexOf(value.toLowerCase()) > -1);
-      })
+      this.foodItems = this.foodItemsOrigin
+        .filter(item => item[3].toLowerCase().indexOf(value.toLowerCase()) > -1)
+        .slice(0, AUTOCOMPLETE_MAX_ITEMS);
 
       this.showAutocomplete = true;
     } else {
@@ -57,6 +46,10 @@ export class AddMealPage implements OnInit {
 
   addItem(item) {
     this.meal.food.push(item);
+
+    // reset query and clear autocomplete
+    this.searchQuery = '';
+    this.showAutocomplete = false;
   }
 
   removeItemAt(index) {
